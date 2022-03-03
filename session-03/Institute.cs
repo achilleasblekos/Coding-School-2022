@@ -6,7 +6,27 @@ using System.Threading.Tasks;
 
 namespace session_03
 {
-    internal class Institute
+    public class Institute
     {
+        public string _name;
+        private string name;
+
+        public string GetName(string _name)
+        {
+            return _name;
+        }
+
+        public void SetName(string _name)
+        {
+            _name = name;
+        }
+
+        public int YearsInService { get; set; }
+    }
+
+
+    public Institute()
+    {
+        Guid id = Guid.NewGuid();
     }
 }

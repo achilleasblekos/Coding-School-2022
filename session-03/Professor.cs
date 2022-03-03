@@ -6,7 +6,41 @@ using System.Threading.Tasks;
 
 namespace session_03
 {
-    internal class Professor
+    public class Professor
+    {
+        public string _name;
+        public string rank;
+        public string Courses[];
+
+    public string GetName(string name)
+    {
+           return name;}
+
+        public string SetGrade(studentID courseID grade)
+        {
+
+        }
+
+    public class grade
     {
     }
+
+    public class courseID
+    {
+    }
+
+    public class studentID
+    {
+    }
+
+    public string Teach(Courses, DateTime)
+    {
+       
+    }
+
+    public Professor()
+    {
+
+    }
+    
 }

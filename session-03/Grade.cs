@@ -6,7 +6,23 @@ using System.Threading.Tasks;
 
 namespace session_03
 {
-    internal class Grade
+    public class Grade
     {
+        public int Grade { get; set; }
+
+        public Grade(int grade)
+        {
+            Grade = grade;
+        }
+
+        Guid id = Guid.NewGuid();
+        Guid StudentId = Guid.NewGuid();
+        Guid CourseId = Guid.NewGuid();
+
+       
     }
+
+
+
+
 }

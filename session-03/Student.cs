@@ -6,7 +6,23 @@ using System.Threading.Tasks;
 
 namespace session_03
 {
-    internal class Student
+    public class Student
     {
+
+        public int RegistrasionNumber { get; set; }
+        public Courses[] Courses { get; set; }
+
+
+    }
+
+    public class Courses[] 
+
+
+
+
+    public Student()
+    {
+        return Student;
     }
 }
+

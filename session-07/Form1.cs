@@ -1,3 +1,4 @@
+using System.IO;
 using System.Text.Json;
 using University;
 
@@ -130,7 +131,7 @@ namespace session_07
             Professor professor1 = new Professor();
             professor1.GetType().GetProperty(Name);
 
-            professor = (University.Professor)JsonSerializer.Deserialize(s, typeof(University.Professor));
+            professor = (Professor)JsonSerializer.Deserialize(s, typeof(Professor));
 
         }
 

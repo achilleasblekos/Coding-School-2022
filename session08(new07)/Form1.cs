@@ -37,7 +37,13 @@ public partial class University : Form
 
     private void loadProfessors_Click(object sender, EventArgs e)
     {
-        LoadData();
+        if (_university1 != null)
+        {
+            _university1 = new University_new.University1();
+            _university1.Professors = new List<University1.Professor>();
+            LoadData();
+            
+        }
     }
 
     private void saveProfessors_Click(object sender, EventArgs e)
@@ -47,13 +53,15 @@ public partial class University : Form
 
     private void editProfessors_Click(object sender, EventArgs e)
     {
-        LoadData();
-        _university1 = new University_new.University1();
-        _university1.Professors = new List<University1.Professor>();
+       
+        if (_university1 != null)
+        {
+            _university1 = new University_new.University1();
+            _university1.Professors = new List<University1.Professor>();
+            LoadData();
+        }
 
         ProfessorsForm professorform = new ProfessorsForm();
-
-       
         professorform.ShowDialog();
     }
 

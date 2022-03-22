@@ -28,6 +28,7 @@ namespace session08_new07
         {
             _university1 = new University_new.University1();
             _university1.Professors = professors;
+            
 
         }
 

@@ -16,11 +16,10 @@ namespace Session_15.EF.Configuration
             builder.ToTable("PetFood");
 
             builder.HasKey(petFood => petFood.ID);
-            builder.Property(petFood => petFood.Type).GetType();
-            builder.Property(petFood => petFood.Brand).GetType();
-            builder.Property(petFood => petFood.Cost).IsRequired();
-            builder.Property(petFood => petFood.Price).IsRequired();
-            builder.Property(petFood => petFood.ObjectStatus).HasDefaultValue(Status.Active);
+            builder.Property(petFood => petFood.Type).HasMaxLength(50);
+            builder.Property(petFood => petFood.Brand).HasMaxLength(50);
+            builder.Property(petFood => petFood.Cost).HasMaxLength(50);
+            builder.Property(petFood => petFood.Price).HasMaxLength(50);
         }
     }
 }

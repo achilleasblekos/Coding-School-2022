@@ -18,14 +18,17 @@ namespace Session_15.EF.Configuration
             builder.ToTable("Transaction");
 
             builder.HasKey(transaction => transaction.ID);
-            builder.Property(transaction => transaction.PetFoodQty).IsRequired();
-            builder.Property(transaction => transaction.PetFoodPrice).IsRequired();
-            builder.Property(transaction => transaction.PetPrice).IsRequired();
-            builder.Property(transaction => transaction.PetFoodID).IsRequired();
-            builder.Property(transaction => transaction.TotalPrice).IsRequired();
-            builder.Property(transaction => transaction.CustomerID).IsRequired();
-            builder.Property(transaction => transaction.EmployeeID).IsRequired();
-            builder.Property(transaction => transaction.Date).IsRequired();
+            builder.Property(transaction => transaction.PetFoodQty).HasMaxLength(100);
+            builder.Property(transaction => transaction.PetFoodPrice).HasMaxLength(100);
+            builder.Property(transaction => transaction.PetPrice).HasMaxLength(100);
+            builder.Property(transaction => transaction.PetFoodID).HasMaxLength(100);
+            builder.Property(transaction => transaction.TotalPrice).HasMaxLength(100);
+            builder.Property(transaction => transaction.CustomerID).HasMaxLength(100);
+            builder.Property(transaction => transaction.EmployeeID).HasMaxLength(100);
+            builder.Property(transaction => transaction.Date).HasMaxLength(100);
+            builder.Property(transaction => transaction.PetID).HasMaxLength(100);    
+
+
 
         }
     }

@@ -16,9 +16,10 @@ namespace Session_15.EF.Configuration
             builder.ToTable("Employee");
 
             builder.HasKey(employee => employee.ID);
-            builder.Property(employee => employee.ObjectStatus).HasDefaultValue(Status.Active);
-            builder.Property(employee => employee.Name).HasMaxLength(30);
-            builder.Property(employee => employee.Surname).HasMaxLength(30);
+            builder.Property(employee => employee.Name).HasMaxLength(50);
+            builder.Property(employee => employee.Surname).HasMaxLength(50);
+            builder.Property(employee => employee.Salary).HasMaxLength(50);
+            builder.Property(employee => employee.EmpType).HasMaxLength(50);
            
         }
     }

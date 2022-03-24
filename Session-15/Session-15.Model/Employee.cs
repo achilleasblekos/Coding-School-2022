@@ -20,7 +20,8 @@ namespace Session_15.Model
 	}
 	public class Employee : Person, IEmployee
 	{
-		public decimal Salary { get; set; }
+        public List<Transaction> Transactions { get; set; }
+        public decimal Salary { get; set; }
 		public EmployeeType EmpType { get; set; }
 
 		public Employee()

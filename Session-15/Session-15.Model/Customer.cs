@@ -8,6 +8,7 @@ namespace Session_15.Model
 {
     public class Customer : Person
     {
+        public List<Transaction> Transactions { get; set; }
         public string PhoneNumber { get; set; }
         public string Tin { get; set; }
 

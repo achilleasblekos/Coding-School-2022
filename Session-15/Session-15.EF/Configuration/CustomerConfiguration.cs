@@ -18,9 +18,9 @@ namespace Session_15.EF.Configuration
             builder.HasKey(customer => customer.ID);
             builder.Property(customer => customer.Tin).HasMaxLength(9);
             builder.Property(customer => customer.PhoneNumber).HasMaxLength(10);
-            builder.Property(customer => customer.ObjectStatus).HasDefaultValue(Status.Active);
-            builder.Property(customer => customer.Name).HasMaxLength(30);
-            builder.Property(customer => customer.Surname).HasMaxLength(30);
+            builder.Property(customer => customer.Name).HasMaxLength(50);
+            builder.Property(customer => customer.Surname).HasMaxLength(50);
+            
 
         }
     }

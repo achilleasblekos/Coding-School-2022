@@ -16,12 +16,11 @@ namespace Session_15.EF.Configuration
             builder.ToTable("Pet");
 
             builder.HasKey(pet => pet.ID);
-            builder.Property(pet => pet.AnimalType).IsRequired();
-            builder.Property(pet => pet.Cost).IsRequired();
-            builder.Property(pet => pet.Price).IsRequired();
-            builder.Property(pet => pet.Breed).IsRequired();
-            builder.Property(pet => pet.ObjectStatus).HasDefaultValue(Status.Active);
-            builder.Property(pet => pet.HealthStatus).IsRequired();
+            builder.Property(pet => pet.AnimalType).HasMaxLength(50);
+            builder.Property(pet => pet.Cost).HasMaxLength(50);
+            builder.Property(pet => pet.Price).HasMaxLength(50);
+            builder.Property(pet => pet.Breed).HasMaxLength(50);
+            builder.Property(pet => pet.HealthStatus).HasMaxLength(50);
         }
     }
 }

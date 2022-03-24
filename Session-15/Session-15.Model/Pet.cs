@@ -37,6 +37,7 @@ namespace Session_15.Model
 
     public class Pet : Product, IPet
     {
+        public Transaction Transaction { get; set; }
         [Required]
         public PetFood FoodType { get; set; }
         public PetStatus HealthStatus { get; set; }

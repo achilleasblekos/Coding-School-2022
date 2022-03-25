@@ -28,12 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.petsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.petsToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // petsToolStripMenuItem
+            // 
+            this.petsToolStripMenuItem.Name = "petsToolStripMenuItem";
+            this.petsToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
+            this.petsToolStripMenuItem.Text = "Pets";
+            this.petsToolStripMenuItem.Click += new System.EventHandler(this.petsToolStripMenuItem_Click);
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem petsToolStripMenuItem;
     }
 }

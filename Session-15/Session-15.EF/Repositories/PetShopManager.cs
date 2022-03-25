@@ -38,8 +38,8 @@ namespace Session_15.EF.Repositories
         {
             using var context = new PetShopContex();
             Customer customer1 = (Customer)context.Customers.Where<Customer>(customer => customer.ID == customer.ID);
-            if (customer != null) return;
-            customer.ObjectStatus = Status.Inactive;
+            if (customer1 != null) return;
+            customer1.ObjectStatus = Status.Inactive;
             Save(context);
         }
 
@@ -48,17 +48,20 @@ namespace Session_15.EF.Repositories
             using var context = new PetShopContex();
             Employee employee1 = (Employee)context.Employees.Where<Employee>(employee => employee.ID == employee.ID);
             if (employee1 != null) return;
-            employee.ObjectStatus = Status.Inactive;
+            employee1.ObjectStatus = Status.Inactive;
             Save(context);
         }
 
         public void Delete(Pet pet)
         {
             using var context = new PetShopContex();
-            Pet pet1 = (Pet)context.Pets.Where<Pet>(pet => pet.ID == pet.ID);
-            if(pet1 != null) return;
-            pet.ObjectStatus = Status.Inactive;
+            //Pet pet1= (Pet)context.Pets.Where<Pet>(pet => pet.ID == pet.ID);
+            //if (pet1 != null) return;
+            //pet1.ObjectStatus = Status.Inactive;
+            context.Pets.Remove(pet);
+            _petShop.Pets.Remove(pet);
             Save(context);
+            
         }
 
 
@@ -67,7 +70,7 @@ namespace Session_15.EF.Repositories
             using var context = new PetShopContex();
             PetFood petFood1 = (PetFood)context.PetFoods.Where<PetFood>(petFood => petFood.ID == petFood.ID);
             if(petFood1 != null) return;            
-            petFood.ObjectStatus = Status.Inactive;
+            petFood1.ObjectStatus = Status.Inactive;
             Save(context);
         }
 

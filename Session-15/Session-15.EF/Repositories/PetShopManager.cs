@@ -1,4 +1,5 @@
-﻿using Session_15.Model;
+﻿using Session_15.EF.Contex;
+using Session_15.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,49 +18,57 @@ namespace Session_15.EF.Repositories
             Load();
         }
 
-        //public PetShopManager(PetShop petShop)
-        //{
-        //    _petShop = petShop;
-        //}
-
         public void Load()
-        {
-            //if (File.Exists(FILE_NAME))
-            //{
-            //    string text = File.ReadAllText(FILE_NAME, Encoding.UTF8);
-            //    _petShop = JsonSerializer.Deserialize<PetShop>(text);
-            //    return;
-            //}
-
+        { 
             _petShop = new PetShop();
-
+            using var context = new PetShopContex();
+            _petShop.Customers = context.Customers.ToList<Customer>();
+            _petShop.Employees = context.Employees.ToList<Employee>();
+            _petShop.Pets = context.Pets.ToList<Pet>();
+            _petShop.PetFoods = context.PetFoods.ToList<PetFood>();
+            _petShop.Transactions = context.Transactions.ToList<Transaction>();
         }
 
-        public void Save()
+        public void Save(PetShopContex contex)
         {
-            //string json = JsonSerializer.Serialize(_petShop);
-            //File.WriteAllText(FILE_NAME, json);
+           contex.SaveChanges();
         }
 
         public void Delete(Customer customer)
         {
+            using var context = new PetShopContex();
+            Customer customer1 = (Customer)context.Customers.Where<Customer>(customer => customer.ID == customer.ID);
+            if (customer != null) return;
             customer.ObjectStatus = Status.Inactive;
+            Save(context);
         }
 
         public void Delete(Employee employee)
         {
+            using var context = new PetShopContex();
+            Employee employee1 = (Employee)context.Employees.Where<Employee>(employee => employee.ID == employee.ID);
+            if (employee1 != null) return;
             employee.ObjectStatus = Status.Inactive;
+            Save(context);
         }
 
         public void Delete(Pet pet)
         {
+            using var context = new PetShopContex();
+            Pet pet1 = (Pet)context.Pets.Where<Pet>(pet => pet.ID == pet.ID);
+            if(pet1 != null) return;
             pet.ObjectStatus = Status.Inactive;
+            Save(context);
         }
 
 
         public void Delete(PetFood petFood)
         {
+            using var context = new PetShopContex();
+            PetFood petFood1 = (PetFood)context.PetFoods.Where<PetFood>(petFood => petFood.ID == petFood.ID);
+            if(petFood1 != null) return;            
             petFood.ObjectStatus = Status.Inactive;
+            Save(context);
         }
 
         public void DeletePetFoodRange(string brand, int qty)
@@ -101,27 +110,42 @@ namespace Session_15.EF.Repositories
 
         public void Add(Customer customer)
         {
+            using var context = new PetShopContex();
+            context.Customers.Add(customer);
             _petShop.Customers.Add(customer);
+            Save(context);
         }
 
         public void Add(Employee employee)
         {
+            using var context = new PetShopContex();
+            context.Employees.Add(employee);
             _petShop.Employees.Add(employee);
+            Save(context);
         }
 
         public void Add(Pet pet)
         {
+            using var context = new PetShopContex();
+            context.Pets.Add(pet);
             _petShop.Pets.Add(pet);
+            Save(context);
         }
 
         public void Add(Transaction transaction)
         {
+            using var context = new PetShopContex();
+            context.Transactions.Add(transaction);
             _petShop.Transactions.Add(transaction);
+            Save(context);
         }
 
         public void Add(PetFood petFood)
         {
+            using var context = new PetShopContex();
+            context.PetFoods.Add(petFood);
             _petShop.PetFoods.Add(petFood);
+            Save(context);
         }
 
         public PetFood? GetFood(AnimalType type, string brand)

@@ -85,6 +85,25 @@
 
         <hr />
 
+        <h3>4) δεν χρειαζεται κατι</h3>
+        <hr />
+
+        <h3>5)</h3>
+        <div>
+            <table>
+                <tr>
+                    <td><label for="txtString">String</label></td>
+                    <td><input id="txtString"></td>
+                </tr>
+                <tr>
+                    <td><button id="btnCheck" onclick="endsWithNumber(event)">EndsWithNumber</button></td>
+                    <td>
+                        <span id="NewString2"></span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
 
 
 
@@ -196,14 +215,14 @@
                 document.getElementById("txtSelectedId").value = selectedItem.id;
             }
 
-            function removePreviousSelection() {
+            function removePreviousSelection(e) {
                 var selection = document.getElementsByClassName("selected");
                 for (var element of selection) {
                     element.classList.remove('selected');
                 }
             }
 
-            function removeFromList() {
+            function removeFromList(e) {
                 var selectedId = +document.getElementById("txtSelectedId").value;
                 var foundIndex = Customers.findIndex(c => c.id === selectedId);
 
@@ -217,8 +236,22 @@
             }
 
 
+            /*------------------------------------------------------------------------------------------*/
 
 
+            function endsWithNumber(e) {
+
+                var string = document.getElementById("txtString").value;
+                var i = 1;
+                if (/[0-9]+$/.test(string)) {
+                    i = parseInt(string[1]) + 1;
+                    document.getElementById("txtNewString").textContent = string[1] + i;
+                }
+                document.getElementById("txtNewString").textContent = string[0] + i;
+
+                return document.getElementById("NewString2").textContent;
+
+            }
 
 
 

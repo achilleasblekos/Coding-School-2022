@@ -1,0 +1,77 @@
+﻿@page "/customers"
+@inject HttpClient httpClient
+@inject NavigationManager navManager
+@inject IJSRuntime jsRuntime
+
+<h3>Customers List</h3>
+<button class="btn btn-primary" @onclick="AddItem">Add New Customer</button>
+
+@if (isLoading)
+{
+    <p>Loading ...</p>
+}
+else{
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Card Number</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var customer in customers)
+            {
+                <tr>
+                    <td>@customer.Name</td>
+                    <td>@customer.Surname</td>
+                    <td>@customer.CardNumber</td>
+                    <td>
+                        <button class="btn btn-primary" @onclick="() => EditItem(customer)">Edit</button>
+                        <button class="btn btn-danger" @onclick="() => DeleteItem(customer)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+
+    List<CustomerListViewModel> customers = new();
+    private bool isLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadItemsFromServer();
+        isLoading = false;
+    }
+
+    private async Task LoadItemsFromServer()
+    {
+        customers = await httpClient.GetFromJsonAsync<List<CustomerListViewModel>>("customer");
+    }
+
+
+	protected void AddItem()
+    {
+        navManager.NavigateTo("/customers/edit");
+    }
+
+     protected async Task DeleteItem(CustomerListViewModel customer)
+    {
+        var confirm = await jsRuntime.InvokeAsync<bool>("confirmDelete", null);
+        if (confirm)
+        {
+            var response = await httpClient.DeleteAsync($"customer/{customer.ID}");
+            response.EnsureSuccessStatusCode();
+            await LoadItemsFromServer();
+        }
+    }
+
+    protected void EditItem(CustomerListViewModel customer)
+    {
+        navManager.NavigateTo($"/customers/edit/{customer.ID}");
+    }
+}

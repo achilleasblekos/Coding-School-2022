@@ -1,0 +1,98 @@
+﻿@page "/employees/edit/{ID:int?}"
+@using FuelStation.Model.Entities
+@inject HttpClient httpClient
+@inject NavigationManager navigationManager
+
+<h3>Employee Edit</h3>
+
+@if (EmployeeItem == null)
+{
+    <p>Loading ...</p>
+}
+else
+{
+        <div class="row">
+            <div class="col-md-6">
+                <label for="customer-name">Name</label>
+                <input name="customer-name" class="form-control" @bind="@EmployeeItem.Name" placeholder="Employee Name" />
+            </div>
+            <div class="col-md-6">
+                <label for="customer-surname">Surname</label>
+                <input name="customer-surname" class="form-control" @bind="@EmployeeItem.Surname" placeholder="Employee Surname" />
+            </div>
+            <div class="col-md-6">
+                <label for="employee-salary">Sallary</label>
+                <input name="employee-salary" type="number" class="form-control" @bind="@EmployeeItem.SalaryPerMonth" placeholder="Employee Sallary" min="1"/>
+            </div> 
+            <div class="col-md-6">
+                <label for="employee-type">Type</label>
+                <select name="employee-type" class="form-select" @bind="EmployeeType">
+                    <option value="-1">Select Employee Type</option>
+                    @foreach (var item in Enum.GetValues(typeof(EmployeeTypeEnum)))
+                    {
+                        <option value="@((int)item)">@item.ToString()</option>
+                    }
+                </select>
+            </div>             
+            <div class="col-md-6">
+                <label for="employee-dstarted">Date Started</label>
+                <input type="datetime" name="employee-daystarted" class="form-control" @bind="@EmployeeItem.HireDateStart" placeholder="Date Started" />
+            </div>            <div class="col-md-6">
+                <label for="employee-dended">Date Ended</label>
+                <input type="datetime" name="employee-dayended" class="form-control" @bind="@EmployeeItem.HireDateEnd" placeholder="Date Ended" />
+            </div>
+
+        </div>        
+        <div class="row mt-2">
+            <div class="col-md-6">
+                <button class="btn btn-success" @onclick="OnSave">Save</button>
+                <button class="btn btn-danger" @onclick="OnCancel">Cancel</button>
+            </div>
+        </div>
+}
+
+@code {
+    [Parameter] public int? ID { get; set; }
+    private EmployeeEditViewModel EmployeeItem { get; set; } = new();
+    private int EmployeeType { get; set; } = -1;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (ID is null)
+        {
+            ID = 0;
+        }
+
+        EmployeeItem = await httpClient.GetFromJsonAsync<EmployeeEditViewModel>($"employee/{ID}");
+
+        if (ID != 0)
+        {
+            EmployeeType = (int)EmployeeItem.EmployeeType;
+        }
+    }
+
+    protected async Task OnSave()
+    {
+        if (string.IsNullOrEmpty(EmployeeItem.Surname) || string.IsNullOrEmpty(EmployeeItem.Name) || EmployeeItem.HireDateStart == null || EmployeeItem.SalaryPerMonth <= 0 || EmployeeType == -1) return;
+
+        HttpResponseMessage response;
+        EmployeeItem.EmployeeType = (EmployeeTypeEnum)EmployeeType;
+        if (ID == 0)
+        {
+            response = await httpClient.PostAsJsonAsync("employee", EmployeeItem);
+        }
+        else
+        {
+            response = await httpClient.PutAsJsonAsync("employee", EmployeeItem);
+        }
+        response.EnsureSuccessStatusCode();
+        navigationManager.NavigateTo("employees");
+        
+        
+    }
+
+     protected void OnCancel()
+    {
+        navigationManager.NavigateTo("employees");
+    }
+}

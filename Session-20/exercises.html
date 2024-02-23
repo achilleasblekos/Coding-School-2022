@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercises</title>
+  </head>
+  <body>
+    <div class="exercise-1">
+      <h2>Reverse a string</h2>
+      <table>
+        <tr>
+          <label id="lblname" for="name">Original String</label
+          ><input id="name" type="text" />
+        </tr>
+        <br />
+        <tr>
+          <label id="lblreversed" for="reversed">Reversed String</label
+          ><input id="reversed" type="text" />
+        </tr>
+        <br />
+        <button id="btn_reverse" onclick="reverseString()">
+          Reverse String
+        </button>
+      </table>
+    </div>
+    <div class="exercise-2">
+      <h2>Is string a pallindrome?</h2>
+      <table>
+        <tr>
+          <label id="lblstring" for="txtString">String</label
+          ><input id="txtString" type="text" />
+        </tr>
+        <tr>
+          <label id="lblpallindrome" for="checkPallindrome"
+            >Is Pallindrome?</label
+          ><input id="checkPallindrome" type="checkbox" />
+        </tr>
+        <br />
+        <button id="btn_pallindrome" onclick="pallindrome()">Check!</button>
+      </table>
+    </div>
+    <div class="exercise-3">
+      <h2>Our Customers</h2>
+      <form id="customerForm" action="">
+        <label for="cname">Name</label>
+        <input id="cname" type="text" />
+        <label for="csurname">Surname</label>
+        <input id="csurname" type="text" />
+        <label for="cage">Age</label>
+        <input id="cage" type="text" />
+        <label for="cgender">Gender</label>
+        <input id="cgender" type="text" />
+      </form>
+      <button id="btn_customer" onclick="addCustomer()">Add Customer</button>
+      <table id="customerTable">
+        <tr>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>Age</th>
+          <th>Gender</th>
+        </tr>
+      </table>
+      <br />
+      <h3>Selected Customer</h3>
+      <form id="selectedCustomer" action="">
+        <label for="cname">Name</label>
+        <input id="sname" type="text" />
+        <br />
+        <label for="ssurname">Surname</label>
+        <input id="ssurname" type="text" />
+        <br />
+        <label for="sage">Age</label>
+        <input id="sage" type="text" />
+        <br />
+        <label for="sgender">Gender</label>
+        <input id="sgender" type="text" />
+      </form>
+    </div>
+
+    <!-- Javascript Scripts -->
+    <script src="main.js"></script>
+  </body>
+</html>
